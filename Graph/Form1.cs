@@ -89,7 +89,7 @@ namespace Graph
             {
                 for (int i = 1; i < pointsf.Count; i++)
                 {
-                    if (FromNumToPixY(pointsf[i - 1][1] * zoom) >= 200f) 
+                    if (FromNumToPixY(pointsf[i - 1][1] * zoom) >= 225f) 
                     {
                         g.DrawLine(pGraph, FromNumToPixX(pointsf[i - 1][0] * zoom), FromNumToPixY(pointsf[i - 1][1] * zoom), FromNumToPixX(pointsf[i][0] * zoom), FromNumToPixY(pointsf[i - 1][1] * zoom));
                     }
@@ -118,10 +118,17 @@ namespace Graph
 
         private void button2_Click(object sender, EventArgs e)
         {
-            pointsf.Clear();
-            GetIexp(textBox2.Text);
-            CalulatePoints();
-            Refresh();
+            try
+            {
+                pointsf.Clear();
+                GetIexp(textBox2.Text);
+                CalulatePoints();
+                Refresh();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Expression makes no sense");
+            }
         }
 
         private void CalulatePoints()
